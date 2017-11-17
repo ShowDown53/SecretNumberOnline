@@ -4,7 +4,11 @@
 import os
 import jinja2
 import webapp2
+import sys
 
+reload(sys)
+
+sys.setdefaultencoding("utf-8")
 
 template_dir = os.path.join(os.path.dirname(__file__), "templates")
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(template_dir), autoescape=False)
@@ -39,11 +43,11 @@ class MainHandler(BaseHandler):
         result = 0
 
         if secret_number == guess:
-            result = "Cestitam, %s je skrito stevilo! Nagrado dobite pri izhodu." % secret_number
+            result = "Čestitam, %s je skrito število! Nagrado dobite pri izhodu." % secret_number
         elif guess > 20:
-            result = "Vneseno stevilo je vecje od 20."
+            result = "Vnešeno število je večje od 20."
         elif secret_number != guess:
-            result = "Zal %s ni skrito stevilo." % guess
+            result = "Žal %s ni skrito število." % guess
 
         params = {"result": result}
 
